@@ -10,6 +10,7 @@
   <?php 
 
           session_start();
+
                     /*
                     session_destroy();
                     die("jajajaj");
@@ -17,37 +18,37 @@
 
             $_id = $_GET['id'];
 
-            if(isset($_EMAMEN['carrito']))
+            if(isset($_SESSION['carrito']))
             {
-                if(isset($_EMAMEN['carrito'][md5($_id)])){
+                if(isset($_SESSION['carrito'][md5($_id)])){
                     
-                    $_EMAMEN['carrito'][md5($_id)]['stock'] += 1;
+                    $_SESSION['carrito'][md5($_id)]['stock']+=1;
                 }else{
-                   $_EMAMEN['carrito'][md5($_id)]= getProductos($_id); 
+                   $_SESSION['carrito'][md5($_id)]= getProductos($_id); 
                 }
                 
                
             }else{
-             $_EMAMEN['carrito'][md5($_id)]= getProductos($_id);   
+             $_SESSION['carrito'][md5($_id)]= getProductos($_id);   
             }
 
-              echo "<pre>";
+            echo "<pre>";
 
-              print_r ($_EMAMEN);
+            print_r ($_SESSION);
 
-            //  print_r(getProductos($_id));
+            //print_r(getProductos($_id));
 
               function getProductos($id)
               {
                   if($id == 1)
                   {
                       return[
-                              'id'     => 1,
-                              'nombre' => 'polo',
-                              'foto'   => 'ropa_abercrombie_fitch.jpg',
+                              'id'          => 1,
+                              'nombre'      => 'polo',
+                              'foto'        => 'ropa_abercrombie_fitch.jpg',
                               'descripcion' => 'ropa',
-                              'stock'  => 25,
-                              'precio' => 80.00
+                              'stock'       => 25,
+                              'precio'      => 80.00
                             ];
                   }
                   
@@ -84,3 +85,7 @@
  <h1><a href="index.php">Regresar</a></h1> 
 </body>
 </html>
+
+
+
+ 
